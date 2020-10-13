@@ -47,9 +47,7 @@ function createMap(earthquakes) {
   
     // Create our map, giving it the streetmap and earthquakes layers to display on load
     var myMap = L.map("mapid", {
-      center: [
-        31.09, -99.71
-      ],
+      center: [ 39.393894, -104.8201226],
       zoom: 3,
       layers: [satelitemap, earthquakes]
     });
@@ -89,9 +87,7 @@ function colorRange(mag) {
         return 'greenyellow';
     };
     };
-    
-    
-    
+         
     // Reflect the earthquake magnitude
     function markerSize(mag) {
       return mag*30000;
@@ -135,14 +131,10 @@ function createFeatures(earthquakeData) {
   createMap(earthquakes);
 }
 
-
-
-
 // Create the legend
 var legend = L.control({
   position: "bottomright"
 });
-
 
 legend.onAdd = function(myMap) {
   var legend_loc = L.DomUtil.create("div", "info legend"),
@@ -160,3 +152,4 @@ legend.onAdd = function(myMap) {
 legend.addTo(myMap);
 }
 
+// console.log("why is this not running?")
