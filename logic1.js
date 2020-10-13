@@ -1,24 +1,15 @@
 // Store our API endpoint inside queryUrl
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
 
-// var myMap = L.map("mapid", {
-//     center: [
-//       31.09, -99.71
-//     ],
-//     zoom: 3,
-//     layers: [satelitemap, earthquakes]
-//   });
 
-//   // Create a layer control
-//   // Pass in our baseMaps and overlayMaps
-//   // Add the layer control to the map
-//   L.control.layers(baseMaps, overlayMaps, {
-//     collapsed: false
-//   }).addTo(myMap);
+// var myMap = L.map("mapid", {
+//     center: [ 39.393894, -104.8201226],
+//     zoom: 3,
+// });
 
 // Define function to create a map
 function createMap(earthquakes) {
-
+ 
     // Define streetmap and darkmap layers
     var satelitemap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
       attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
@@ -42,14 +33,14 @@ function createMap(earthquakes) {
   
     // Create overlay object to hold our overlay layer
     var overlayMaps = {
-      Earthquakes: earthquakes
+      "Earthquakes": earthquakes
     };
   
     // Create our map, giving it the streetmap and earthquakes layers to display on load
     var myMap = L.map("mapid", {
       center: [ 39.393894, -104.8201226],
       zoom: 3,
-      layers: [satelitemap, earthquakes]
+      layers: [satelitemap, darkmap, earthquakes]
     });
   
     // Create a layer control
@@ -58,6 +49,7 @@ function createMap(earthquakes) {
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
     }).addTo(myMap);
+};
 
 // Define colors depending on the magnituge of the earthquake
 function colorRange(mag) {
@@ -90,7 +82,7 @@ function colorRange(mag) {
          
     // Reflect the earthquake magnitude
     function markerSize(mag) {
-      return mag*30000;
+      return mag*2;
     };
 
 // Perform a GET request to the query URL
@@ -150,6 +142,5 @@ legend.onAdd = function(myMap) {
 
 // Add legend to the map
 legend.addTo(myMap);
-}
 
-// console.log("why is this not running?")
+
